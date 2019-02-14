@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 SCRIPT_DIR=${PWD}
-HARVESTER_IMAGE="registry.gitlab.com/clarin-eric/docker-oai-harvester:0.0.1-rc9"
+HARVESTER_IMAGE="registry.gitlab.com/clarin-eric/docker-oai-harvester:0.0.1-rc12"
 RESOURCES_DIR="${SCRIPT_DIR}/resources"
 OUTPUT_DIR="${SCRIPT_DIR}/output"
 
