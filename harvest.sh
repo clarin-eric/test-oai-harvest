@@ -7,7 +7,11 @@ RESOURCES_DIR="${SCRIPT_DIR}/resources"
 ASSETS_DIR="${SCRIPT_DIR}/assets"
 OUTPUT_DIR="${SCRIPT_DIR}/output"
 
-CONFIG_FILE="${SCRIPT_DIR}/config.xml"
+if [ "$1" ]; then
+	CONFIG_FILE="$1"
+else
+	CONFIG_FILE="${SCRIPT_DIR}/config.xml"
+fi
 cp "${CONFIG_FILE}" "${RESOURCES_DIR}/config-test-test.xml"
 
 
