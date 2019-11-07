@@ -1,0 +1,172 @@
+<!-- This is the configuration for harvesting all non-CLARIN providers. -->
+<config>
+
+  <!-- ### configuration settings ### -->
+  <settings>
+    <!-- Working directory. -->
+    <workdir>workspace-olac</workdir>
+
+    <!-- Maximum number of attempts per record before giving up. -->
+    <max-retry-count>10</max-retry-count>
+
+    <!-- Delay between retries of a record (milliseconds). -->
+    <retry-delay>30000</retry-delay>
+
+    <!-- Maximum number of concurrent harvester threads -->
+    <max-jobs>6</max-jobs>
+
+    <!-- Number of resources placed in the resource pool. -->
+    <resource-pool-size>4</resource-pool-size>
+
+    <!-- Default timeout (for connection and reading) for a single
+    http request in seconds. If unspecified, will be INFINITE.  -->
+    <timeout>600</timeout>
+
+    <!-- File used to log harvesting times. -->
+    <state-file>state.xml</state-file>
+
+    <!-- If this parameter is true, use incremental harvesting. For that to
+    work, state-file must be defined, the file must exist, and the provider
+    in question must have been harvested previously. If any of these conditions
+    is not fulfilled, this setting has no effect.-->
+    <incremental>false</incremental>
+    
+    <scenario>ListIdentifiers</scenario>
+  </settings>
+
+
+  <!-- ### output directories (referenced in the action section) ### -->
+  <directories>
+    <!-- When the attribute 'max-files' is non-zero, subdirectories
+         will be created to ensure no directory has more than that
+         number of files. -->
+    <dir path="oai-raw" id="raw" max-files="10000"/>
+    <dir path="oai-rec" id="rec" max-files="50000"/>
+    <dir path="oai-pmh" id="oai" max-files="10000"/>
+    <dir path="results/cmdi-1_1" id="cmdi-1_1" max-files="50000"/>
+    <dir path="results/cmdi" id="cmdi-1_2" max-files="50000"/>
+  </directories>
+
+
+  <!-- ### actions to take on metadata formats (in order of preference) ### -->
+  <actions>
+  <format match="namespace" value="http://www.europeana.eu/schemas/edm/">
+<!--
+-->
+	<action type="save" dir="raw" suffix=".xml"/>
+<!--
+-->
+	<action type="transform" file="resources/assets/filter.xsl" cache="cache"/>
+	<action type="save" dir="oai" suffix=".xml"/>
+	<action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+	<action type="split"/>
+	<action type="strip"/>
+<!--
+        <action type="save" dir="rec" suffix=".xml"/>
+-->
+	<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/dev-edm-cmdi/edm-cmdi/edm2cmdi.xsl"/>
+	<!--<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/master/edm-cmdi/edm2cmdi.xsl"/>-->
+	<action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+  </actions>
+
+  <!-- ### list of providers ### -->
+  <providers>
+    <!--
+	Example with set specification:
+      -->
+      <!--
+    <provider url="http://www.dummy.example.only/" name="TEST">
+      <set>abc</set>
+      <set>xyz</set>
+    </provider>
+      -->
+<!--    
+   <provider url="https://b2share.eudat.eu/api/oai2d" name="B2SHARE">
+      <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
+    </provider>
+-->
+<!--
+   <provider url="https://oai.cedifor.de/" name="CEDIFOR"/>
+-->  
+
+<!--   <provider url="http://oai.europeana.eu/oaicat/OAIHandler" name="Europeana">-->
+   <provider url="http://oai-pmh.europeana.eu/oai" name="Europeana" timeout="6000" max-retry-count="6">
+        <recordsList>/app/oai/resources/assets/selection.xml</recordsList>
+<!--
+             #filter_collection 92004_NL_Manuscriptorium_CZ
+        #filter_collection 9200519_Ag_BnF_Gallica_typedoc_manuscrits 
+        #filter_collection 92065_Ag_EU_TEL_a0445_ETravel 
+-->
+<set>9200114</set>
+<set>92068</set>
+<set>2022411</set>
+<set>2022402</set>
+<set>0940429</set>
+<set>2020125</set>
+<set>2020127</set>
+<set>0940442</set>
+<set>92078</set>
+
+<set>0940431</set>
+<set>0940433</set>
+<set>15416</set>
+<set>2022410</set>
+<set>9200394</set>
+<set>9200452</set>
+<set>9200453</set>
+<set>9200456</set>
+<set>9200467</set>
+<set>9200470</set>
+<set>9200498</set>
+<set>92054</set>
+<set>92055</set>
+
+<!--
+	<set>9200114</set>
+	<set>92065</set>
+	<set>92068</set>
+	<set>2022411</set>
+	<set>2022402</set>
+	<set>0940429</set>
+	<set>2020125</set>
+	<set>2020127</set>
+	<set>0940442</set>
+	<set>92004</set>
+	<set>9200519</set>
+	<set>92078</set>
+	<set>0940431</set>
+	<set>0940433</set>
+	<set>15416</set>
+	<set>2022410</set>
+	<set>9200394</set>
+	<set>9200452</set>
+	<set>9200453</set>
+	<set>9200456</set>
+	<set>9200467</set>
+	<set>9200470</set>
+	<set>9200498</set>
+	<set>92054</set>
+	<set>92055</set>
+-->
+<!--
+	<set>2020125</set>
+	<set>2020127</set>
+	<set>92078</set>
+	<set>0940431</set>
+	<set>15416</set>
+	<set>2022410</set>
+	<set>9200452</set>
+	<set>9200453</set>
+	<set>9200456</set>
+	<set>9200467</set>
+	<set>9200498</set>
+	<set>92054</set>
+	<set>2020125</set>
+	     <set>2020125_Ag_SI_Nat.EContentAgg_sigic_articles</set>
+	-->
+  </provider>
+
+  </providers>
+</config>
+

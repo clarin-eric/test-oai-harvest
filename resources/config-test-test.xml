@@ -112,13 +112,19 @@
       <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
    <format match="prefix" value="edm">
+<!--
 	<action type="save" dir="raw" suffix=".xml"/>
-	<action type="transform" file="resources/assets/filter.xsl"/>
+-->
+	<action type="transform" file="resources/assets/filter.xsl" cache="cache"/>
+<!--
 	<action type="save" dir="oai" suffix=".xml"/>
+-->
 	<action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
 	<action type="split"/>
 	<action type="strip"/>
-	<action type="save" dir="rec" suffix=".xml"/>
+<!--
+        <action type="save" dir="rec" suffix=".xml"/>
+-->
 	<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/dev-edm-cmdi/edm-cmdi/edm2cmdi.xsl"/>
 	<!--<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/master/edm-cmdi/edm2cmdi.xsl"/>-->
 	<action type="save" dir="cmdi-1_2" suffix=".xml"/>
@@ -141,64 +147,8 @@
       <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
     </provider>
 -->
-<!--
-   <provider url="https://oai.cedifor.de/" name="CEDIFOR"/>
--->  
+   <provider url="https://gams.uni-graz.at/oaiprovider/" name="GAMS"/>
 
-<!--   <provider url="http://oai.europeana.eu/oaicat/OAIHandler" name="Europeana">-->
-   <provider url="http://oai-pmh.europeana.eu/oai" name="Europeana">
-        <recordsList>/app/oai/resources/assets/selection.xml</recordsList>
-<set>0940431</set>
-<set>0940433</set>
-<set>15416</set>
-<set>2022410</set>
-<set>9200394</set>
-<set>9200452</set>
-
-<!--
-	<set>9200114</set>
-	<set>92065</set>
-	<set>92068</set>
-	<set>2022411</set>
-	<set>2022402</set>
-	<set>0940429</set>
-	<set>2020125</set>
-	<set>2020127</set>
-	<set>0940442</set>
-	<set>92004</set>
-	<set>9200519</set>
-	<set>92078</set>
-	<set>0940431</set>
-	<set>0940433</set>
-	<set>15416</set>
-	<set>2022410</set>
-	<set>9200394</set>
-	<set>9200452</set>
-	<set>9200453</set>
-	<set>9200456</set>
-	<set>9200467</set>
-	<set>9200470</set>
-	<set>9200498</set>
-	<set>92054</set>
-	<set>92055</set>
--->
-<!--
-	<set>2020125</set>
-	<set>2020127</set>
-	<set>92078</set>
-	<set>0940431</set>
-	<set>15416</set>
-	<set>2022410</set>
-	<set>9200452</set>
-	<set>9200453</set>
-	<set>9200456</set>
-	<set>9200467</set>
-	<set>9200498</set>
-	<set>92054</set>
-	<set>2020125</set>
-	     <set>2020125_Ag_SI_Nat.EContentAgg_sigic_articles</set>
-	-->
-  </provider>
 
   </providers>
 </config>

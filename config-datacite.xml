@@ -147,7 +147,9 @@
       <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
     </provider>
 -->
-   <provider url="https://gams.uni-graz.at/oaiprovider/" name="GAMS"/>
+  <provider url="https://oai.datacite.org/oai" name="DataCite">
+    <set>DELFT.UU~cT0qLiomZnE9c3ViamVjdDooNi4yIE9SIDYuNSk=</set>
+  </provider>
 
 
   </providers>

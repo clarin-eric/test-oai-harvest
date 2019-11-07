@@ -147,7 +147,10 @@
       <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
     </provider>
 -->
-   <provider url="https://gams.uni-graz.at/oaiprovider/" name="GAMS"/>
+<!--
+   <provider url="https://repo.sadilar.org/oai/request" name="SADiLaR"/>
+-->
+   <provider url="https://oai.cedifor.de/" name="CEDIFOR"/>
 
 
   </providers>
