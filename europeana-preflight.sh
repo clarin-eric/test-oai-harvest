@@ -44,7 +44,7 @@ EOF
 filter_collection() {
   COLLECTION="$1"
   shift
-  bash "${FILTER_HARVEST}" --collection "${COLLECTION}" $@ > /dev/stderr
+  bash "${FILTER_HARVEST}" --collection "${COLLECTION}" $@ >&2
 }
 
 gather() {
