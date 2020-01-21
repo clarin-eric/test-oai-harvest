@@ -13,10 +13,7 @@ filter_collections() {
 	filter_collection 2022411_Ag_RO_Elocal_audioinb
 	filter_collection 2022402_Ag_RO_Elocal_arhivele
 
-	filter_collection 0940429_Ag_PL_www.bibliotekacyfrowa.pl --media --text --open
 	filter_collection 2020125_Ag_SI_Nat.EContentAgg_sigic_articles --media --fulltext --open 
-	filter_collection 2020127_Ag_SI_Nat.EContentAgg_Books --media --fulltext --open
-	filter_collection 0940442_Ag_PL_bibliotekacyfrowa.eu --media --fulltext --open
 	filter_collection 92078_Ag_EU_TEL_a1030_EuropanaRegia --text --open
 	#filter_collection 92004_NL_Manuscriptorium_CZ
 	#filter_collection 9200519_Ag_BnF_Gallica_typedoc_manuscrits --text
@@ -36,6 +33,53 @@ filter_collections() {
 9200498_Ag_BnF_occitanica
 92054_Ag_Slovenia_Dom_in_svet
 92055_Ag_Slovenia_Ljubljanski_zvon
+EOF
+
+	#added experimentally 2020-01-21
+	filter_collection 100_RoL_NLScotland_RareBooksDigitalGallery_iiif --media --text --open
+	filter_collection 101_RoL_NLWales_Almancs --media --text --open
+	filter_collection 102_RoL_NLWales_Dictionaries --media --text --open
+	filter_collection 103_RoL_NLWales_KeyTexts --media --text --open
+	filter_collection 104_RoL_NLWales_Manuscripts --media --text --open
+	filter_collection 106_RoL_NLScotland_EarlyGaelicBooks --media --fulltext --open
+	filter_collection 113_RoL_CulturaItalia_cnr_ovi_plutei --media --text
+	filter_collection 150_Ag_EU_JHN_AllianceIsraelite_part1 --media --fulltext --open
+	filter_collection 15_RoL_NUL_Slovenia_Newspapers_part_3 --media --fulltext --open
+	filter_collection 2020126_Ag_SI_NatEContentAgg_newspaperspart1 --media --text --open
+	filter_collection 2020127_Ag_SI_NatEContentAgg_Books --media --fulltext --open
+	filter_collection 2020128_Ag_SI_Nat_EContentAgg_newspapers_part2 --media --text --open
+	filter_collection 2021624_Ag_NL_DigitaleCollectie_atria --media --fulltext --open
+	filter_collection 28_RoL_NLSerbia_periodika_psr --media --text --open
+	filter_collection 29_RoL_NLSerbia_evropa --media --text --open
+	filter_collection 32_RoL_NLSerbia_avangarde --media --text --open
+	filter_collection 33_RoL_NLSerbia_putopisi --media --text --open
+	filter_collection 34_RoL_NLSerbia_vk --media --text --open
+	filter_collection 35_RoL_NLSerbia_moderna --media --text --open
+	filter_collection 36_RoL_NLSerbia_stampana --media --text
+	filter_collection 37_RoL_NLSerbia_beleske --media --text --open
+	filter_collection 38_NULSlovenia_ivan_letters --media --text
+	filter_collection 39_RoL_CulturaItalia_cnr_ovi --media --text
+	filter_collection 50_KB_RiseOfLiteracy_Kinderboeken --media --text --open
+	filter_collection 54_mig_jev_periodika_Serbia --media --text --open
+	filter_collection 60_mig_romi_knjige_Serbia --media --text --open
+	filter_collection 6_RoL_NLLatvia_Collection57760 --media --fulltext --open
+	filter_collection 92_RoL_NULSlovenia_newspapers --media --text --open
+	filter_collection 94_RoL_NLLatvia_Collection_569516 --media --fulltext --open
+	filter_collection 97_RoL_NLLatvia_Collection_748774 --media --fulltext --open
+	filter_collection 0940429_Ag_PL_www.bibliotekacyfrowa.pl --media --fulltext --open
+	filter_collection 0940442_Ag_PL_bibliotekacyfrowa.eu --media --fulltext --open
+
+while read C; do filter_collection "$C" --open --media --fulltext; done <<EOF 
+106_RoL_NLScotland_EarlyGaelicBooks
+150_Ag_EU_JHN_AllianceIsraelite_part1
+15_RoL_NUL_Slovenia_Newspapers_part_3
+2020127_Ag_SI_NatEContentAgg_Books
+2021624_Ag_NL_DigitaleCollectie_atria
+6_RoL_NLLatvia_Collection57760
+94_RoL_NLLatvia_Collection_569516
+97_RoL_NLLatvia_Collection_748774
+0940429_Ag_PL_www.bibliotekacyfrowa.pl
+0940442_Ag_PL_bibliotekacyfrowa.eu
 EOF
 
 #  filter_collection "0940442_Ag_PL_bibliotekacyfrowa.eu" --open --media --fulltext
