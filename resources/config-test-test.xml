@@ -147,7 +147,7 @@
       <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
     </provider>
 -->
-   <provider url="http://textgridlab.org/1.0/tgoaipmh/oai" name="TextGrid"/>
+   <provider url="https://gams.uni-graz.at/oaiprovider/" name="GAMS"/>
 
 
   </providers>
