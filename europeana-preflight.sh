@@ -26,7 +26,6 @@ filter_collections() {
 	filter_collection 35_RoL_NLSerbia_moderna --media --text --open
 	filter_collection 36_RoL_NLSerbia_stampana --media --text
 	filter_collection 37_RoL_NLSerbia_beleske --media --text --open
-	filter_collection 38_NULSlovenia_ivan_letters --media --text
 	filter_collection 39_RoL_CulturaItalia_cnr_ovi --media --text
 	filter_collection 50_KB_RiseOfLiteracy_Kinderboeken --media --text --open
 	filter_collection 54_mig_jev_periodika_Serbia --media --text --open
