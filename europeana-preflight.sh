@@ -10,6 +10,7 @@ fi
 filter_collections() {
 
 	#added experimentally 2020-01-21
+	filter_collection 15416_L_IE_IMC_oireachtas --media --text --open
 	filter_collection 100_RoL_NLScotland_RareBooksDigitalGallery_iiif --media --text --open
 	filter_collection 101_RoL_NLWales_Almancs --media --text --open
 	filter_collection 102_RoL_NLWales_Dictionaries --media --text --open
@@ -59,7 +60,6 @@ EOF
   while read C; do filter_collection "$C" --open --media --fulltext; done <<EOF 
 0940431_Ag_PL_rcin.org.pl
 0940433_Ag_PL_mbc.malopolska.pl
-15416_L_IE_IMC_oireachtas
 2022410_Ag_RO_Elocal_documen1
 9200394_Ag_Slovenia_Laibacher_Zeitung
 9200452_UL_Old_Rare_Books_Lucian_Blaga
