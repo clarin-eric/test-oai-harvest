@@ -1,12 +1,18 @@
 #!/usr/bin/env sh
 
 SCRIPT_DIR=${PWD}
-CONTAINER_NAME="oai-test-harvester"
-HARVESTER_IMAGE="registry.gitlab.com/clarin-eric/docker-oai-harvester:1.1.0"
-#HARVESTER_IMAGE="docker-oai-harvester:1.0.0-4-gbdefd2a"
-RESOURCES_DIR="${SCRIPT_DIR}/resources"
-ASSETS_DIR="${SCRIPT_DIR}/assets"
-OUTPUT_BASE="${SCRIPT_DIR}/output"
+CONFIG_INC_FILE="harvest-config.inc.sh"
+CONFIG_INC_DEFAULT_FILE="harvest-config.inc.default.sh"
+
+#load defaults
+source "${SCRIPT_DIR}/${CONFIG_INC_DEFAULT_FILE}"
+#load custom config
+source "${SCRIPT_DIR}/${CONFIG_INC_FILE}"
+
+if ! [ "${OUTPUT_BASE}" ]; then
+	echo "Configuration variables not read. Make sure that the file(s) ${CONFIG_INC_FILE} and/or ${CONFIG_INC_DEFAULT_FILE} present in ${SCRIPT_DIR}"
+	exit 1
+fi
 
 if [ "$1" ]; then
 	CONFIG="$1"
