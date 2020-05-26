@@ -6,12 +6,17 @@ HARVESTER_IMAGE="registry.gitlab.com/clarin-eric/docker-oai-harvester:1.1.0"
 #HARVESTER_IMAGE="docker-oai-harvester:1.0.0-4-gbdefd2a"
 RESOURCES_DIR="${SCRIPT_DIR}/resources"
 ASSETS_DIR="${SCRIPT_DIR}/assets"
-OUTPUT_DIR="${SCRIPT_DIR}/output"
+OUTPUT_BASE="${SCRIPT_DIR}/output"
+
+mkdir -p "${OUTPUT_BASE}"
 
 if [ "$1" ]; then
-	CONFIG_FILE="$1"
+	CONFIG="$1"
+	CONFIG_FILE="${CONFIG}.xml"
+	OUTPUT_DIR="${OUTPUT_BASE}/${CONFIG}"
 else
-	echo "Usage: $0 <config file>" >&2
+	echo "Usage: $0 <config>" >&2
+	echo "There must be a file <config>.xml" >&2
 	exit 1
 fi
 
