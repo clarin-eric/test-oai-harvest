@@ -8,8 +8,6 @@ RESOURCES_DIR="${SCRIPT_DIR}/resources"
 ASSETS_DIR="${SCRIPT_DIR}/assets"
 OUTPUT_BASE="${SCRIPT_DIR}/output"
 
-mkdir -p "${OUTPUT_BASE}"
-
 if [ "$1" ]; then
 	CONFIG="$1"
 	CONFIG_FILE="${CONFIG}.xml"
@@ -24,6 +22,7 @@ if ! cp "${CONFIG_FILE}" "${RESOURCES_DIR}/config-test-test.xml"; then
 	exit 1
 fi
 
+mkdir -p "${OUTPUT_DIR}"
 
 docker run \
 	--rm --name ${CONTAINER_NAME} \
