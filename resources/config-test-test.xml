@@ -7,10 +7,10 @@
     <workdir>workspace-olac</workdir>
 
     <!-- Maximum number of attempts per record before giving up. -->
-    <max-retry-count>2</max-retry-count>
+    <max-retry-count>10</max-retry-count>
 
     <!-- Delay between retries of a record (milliseconds). -->
-    <retry-delay>10000</retry-delay>
+    <retry-delay>30000</retry-delay>
 
     <!-- Maximum number of concurrent harvester threads -->
     <max-jobs>6</max-jobs>
@@ -20,7 +20,7 @@
 
     <!-- Default timeout (for connection and reading) for a single
     http request in seconds. If unspecified, will be INFINITE.  -->
-    <timeout>60</timeout>
+    <timeout>600</timeout>
 
     <!-- File used to log harvesting times. -->
     <state-file>state.xml</state-file>
@@ -30,7 +30,7 @@
     in question must have been harvested previously. If any of these conditions
     is not fulfilled, this setting has no effect.-->
     <incremental>false</incremental>
-
+    
     <scenario>ListRecords</scenario>
   </settings>
 
@@ -40,26 +40,41 @@
     <!-- When the attribute 'max-files' is non-zero, subdirectories
          will be created to ensure no directory has more than that
          number of files. -->
+    <dir path="oai-raw" id="raw" max-files="0"/>
     <dir path="oai-rec" id="rec" max-files="0"/>
     <dir path="oai-pmh" id="oai" max-files="0"/>
     <dir path="results/cmdi-1_1" id="cmdi-1_1" max-files="0"/>
     <dir path="results/cmdi" id="cmdi-1_2" max-files="0"/>
-    <dir path="results/datacite" id="datacite" max-files="0"/>
   </directories>
 
 
   <!-- ### actions to take on metadata formats (in order of preference) ### -->
+<!--
   <actions>
-
-    <format match="namespace" value="http://schema.datacite.org/oai/oai-1.0/">
+    <format match="prefix" value="olac">
       <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
       <action type="split"/>
       <action type="save" dir="rec" suffix=".xml"/>
-      <action type="strip"/>
-      <action type="save" dir="datacite" suffix=".xml"/>
+      <action type="transform" file="https://raw.githubusercontent.com/menzowindhouwer/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
+      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
+      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
- 
+    <format match="prefix" value="oai_dc">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="transform" file="https://raw.githubusercontent.com/menzowindhouwer/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
+      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
+      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+  </actions>
+-->
 
+  <actions>
     <format match="namespace" value="http://www.clarin.eu/cmd/1">
       <action type="save" dir="oai" suffix=".xml"/>
       <action type="split"/>
@@ -76,7 +91,6 @@
       <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
       <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
-
     <format match="prefix" value="olac">
       <action type="save" dir="oai" suffix=".xml"/>
       <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
@@ -97,20 +111,48 @@
       <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
       <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
+   <format match="prefix" value="edm">
+<!--
+	<action type="save" dir="raw" suffix=".xml"/>
+-->
+	<action type="transform" file="resources/assets/filter.xsl" cache="cache"/>
+<!--
+	<action type="save" dir="oai" suffix=".xml"/>
+-->
+	<action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+	<action type="split"/>
+	<action type="strip"/>
+<!--
+        <action type="save" dir="rec" suffix=".xml"/>
+-->
+	<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/dev-edm-cmdi/edm-cmdi/edm2cmdi.xsl"/>
+	<!--<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/master/edm-cmdi/edm2cmdi.xsl"/>-->
+	<action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
   </actions>
-
 
   <!-- ### list of providers ### -->
   <providers>
-<provider url="http://www.clarin.si/repository/oai/openaire_data" name="clarin.si" />
-<provider url="http://repository.clarin.dk/repository/oai/openaire_data" name="clarin.dk" />
-<provider url="https://clarin.vdu.lt/oai/openaire_data" name="vdu" />
-<provider url="https://clarin-pl.eu/oai/openaire_data" name="clarin-pl" />
-<provider url="https://repo.clarino.uib.no/oai/openaire_data" name="uib" />
-<provider url="https://clarin.eurac.edu/repository/oai/openaire_data" name="eurac" />
-<provider url="http://dspace-clarin-it.ilc.cnr.it/repository/oai/openaire_data" name="ilc" />
-<provider url="http://lindat.mff.cuni.cz/repository/oai/openaire_data" name="lindat" />
-<provider url="https://repo.sadilar.org/oai/openaire_data" name="sadilar" />
-<provider url="https://repository.clarin.is/repository/oai/openaire_data" name="clarin.is" />
- </providers>
+    <!--
+	Example with set specification:
+      -->
+      <!--
+    <provider url="http://www.dummy.example.only/" name="TEST">
+      <set>abc</set>
+      <set>xyz</set>
+    </provider>
+      -->
+<!--    
+   <provider url="https://b2share.eudat.eu/api/oai2d" name="B2SHARE">
+      <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
+    </provider>
+-->
+<!--
+   <provider url="https://repo.sadilar.org/oai/request" name="SADiLaR"/>
+-->
+   <provider url="https://oai.cedifor.de/" name="CEDIFOR"/>
+
+
+  </providers>
 </config>
+
