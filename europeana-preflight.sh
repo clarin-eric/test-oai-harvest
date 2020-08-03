@@ -14,7 +14,6 @@ filter_collections() {
 205_FBC_WielkopolskaBibliotekaCyfrowa_Part1
 222_Slovenia_Newspapers_Part1
 9200394_Slovenia_Laibacher_Zeitung
-0940423_FBC_WielkopolskaBibliotekaCyfrowa_Part2
 223_Slovenia_Slovenski_gospodar_Ljubljanski_zvon
 194_Slovenia_Kmetijske_in_rokodelske_novice
 15_Slovenia_Newspapers_Part3
@@ -26,6 +25,11 @@ filter_collections() {
 0943111_Ag_BG_PenchoSlaveykov_LIBVAR_ADVERT_2015
 92068_Slovenia_Europeana_travel
 2020127_Slovenia_Books
+EOF
+
+
+	while read C; do filter_collection "$C" --open --media --text; done <<EOF 
+0940423_FBC_WielkopolskaBibliotekaCyfrowa_Part2
 217_UCC_DRI
 129_RoL_OVI_manoscritti
 204_DRI_MonaghanCC

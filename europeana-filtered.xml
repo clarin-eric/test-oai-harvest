@@ -106,7 +106,6 @@
 <set>205</set>
 <set>222</set>
 <set>9200394</set>
-<set>0940423</set>
 <set>223</set>
 <set>194</set>
 <set>15</set>
@@ -117,9 +116,12 @@
 <set>0943109</set>
 <set>0943111</set>
 <set>2020127</set>
-<set>217</set>
+
+<!-- empty selection? 2020-08-03 -->
+<set>0940423</set>
 <set>129</set>
 <set>204</set>
+<set>217</set>
 
 
 <!-- added 2020Q1 -->
