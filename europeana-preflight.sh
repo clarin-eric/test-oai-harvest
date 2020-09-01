@@ -30,14 +30,17 @@ EOF
 
 	while read C; do filter_collection "$C" --open --media --text; done <<EOF 
 0940423_FBC_WielkopolskaBibliotekaCyfrowa_Part2
+EOF
+
+#confirmed acceptable conditions
+        while read C; do filter_collection "$C" --media --text; done <<EOF
 129_RoL_OVI_manoscritti
 EOF
 
-# Audio collections
-	while read C; do filter_collection "$C" --open --media; done <<EOF 
-217_UCC_DRI
-204_DRI_MonaghanCC
-EOF
+# Media collections
+
+	filter_collection 217_UCC_DRI --sound
+	filter_collection 204_DRI_MonaghanCC --video
 
 	#added 2020Q1
 	filter_collection 15416_L_IE_IMC_oireachtas --media --text --open
