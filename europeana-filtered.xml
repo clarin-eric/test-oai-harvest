@@ -31,7 +31,7 @@
     is not fulfilled, this setting has no effect.-->
     <incremental>false</incremental>
     
-    <scenario>ListIdentifiers</scenario>
+    <scenario>ListRecords</scenario>
   </settings>
 
 
@@ -103,19 +103,19 @@
 <!-- added experimentally 2020-07-22 -->
 
 
-<set>205</set>
-<set>222</set>
-<set>9200394</set>
-<set>223</set>
-<set>194</set>
-<set>15</set>
-<set>221</set>
-<set>2020128</set>
-<set>0943108</set>
-<set>0943110</set>
-<set>0943109</set>
-<set>0943111</set>
 <set>2020127</set>
+<set>0943111</set>
+<set>0943109</set>
+<set>0943110</set>
+<set>0943108</set>
+<set>2020128</set>
+<set>221</set>
+<set>15</set>
+<set>194</set>
+<set>223</set>
+<set>9200394</set>
+<set>222</set>
+<set>205</set>
 
 <!-- empty selection? 2020-08-03 -->
 <set>0940423</set>
