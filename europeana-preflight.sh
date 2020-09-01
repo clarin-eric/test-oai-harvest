@@ -30,8 +30,12 @@ EOF
 
 	while read C; do filter_collection "$C" --open --media --text; done <<EOF 
 0940423_FBC_WielkopolskaBibliotekaCyfrowa_Part2
-217_UCC_DRI
 129_RoL_OVI_manoscritti
+EOF
+
+# Audio collections
+	while read C; do filter_collection "$C" --open --media; done <<EOF 
+217_UCC_DRI
 204_DRI_MonaghanCC
 EOF
 
