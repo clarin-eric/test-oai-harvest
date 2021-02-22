@@ -31,7 +31,7 @@
     is not fulfilled, this setting has no effect.-->
     <incremental>false</incremental>
     
-    <scenario>ListRecords</scenario>
+    <scenario>ListIdentifiers</scenario>
   </settings>
 
 
