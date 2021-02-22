@@ -9,35 +9,32 @@ fi
 
 filter_collections() {
 
-	#added experimentally 2020-07-22
-	while read C; do filter_collection "$C" --open --media --fulltext; done <<EOF 
-205_FBC_WielkopolskaBibliotekaCyfrowa_Part1
-222_Slovenia_Newspapers_Part1
-9200394_Slovenia_Laibacher_Zeitung
-223_Slovenia_Slovenski_gospodar_Ljubljanski_zvon
-194_Slovenia_Kmetijske_in_rokodelske_novice
-15_Slovenia_Newspapers_Part3
-221_Slovenia_Newspapers_Part4
-2020128_Slovenia_Newspapers_Part2
-0943108_Ag_BG_PenchoSlaveykov_LIBVAR_ARTICLE_2014
-0943110_Ag_BG_PenchoSlaveykov_LIBVAR_ARTICLE_2015
-0943109_Ag_BG_PenchoSlaveykov_LIBVAR_ADVERT_2014
-0943111_Ag_BG_PenchoSlaveykov_LIBVAR_ADVERT_2015
-92068_Slovenia_Europeana_travel
-2020127_Slovenia_Books
+
+	# added experimentally 2021Q1 (text + open)
+	while read C; do filter_collection "$C" --open --media --text; done <<EOF
+09311_Ag_EU_JHN_AllianceIsraelite_part2
+284_Slovenia_ecc_Athena_plus
+341_Hispana_FundacionGinerRios
+386_ECC_NLSerbia_zenski_pokret
+424_CY_today
+294_Hispana_bvasturias
+297_Hispana_minerva
+303_Hispana_RODIN
+308_Hispana_BVMalaga
+09315_Ag_EU_JHN_GUF_jd
+2021003_Ag_FI_NDL_fragmenta
+2021716_Ag_CY_Gazettes
+2021718_Ag_CY_Kiprologiko
+0943102_Ag_BG_PenchoSlaveykov_ADVERT
+0943101_Ag_BG_PenchoSlaveykov_ARTICLE
 EOF
 
-
-	while read C; do filter_collection "$C" --open --media --text; done <<EOF 
-0940423_FBC_WielkopolskaBibliotekaCyfrowa_Part2
+	# added experimentally 2021Q1 (text, confirmed acceptable conditions)
+	while read C; do filter_collection "$C" --media --text; done <<EOF
+394_DRI_IQDA_2
 EOF
 
-#confirmed acceptable conditions
-        while read C; do filter_collection "$C" --media --text; done <<EOF
-129_RoL_OVI_manoscritti
-EOF
-
-# Media collections
+	# Media collections
 
 	filter_collection 217_UCC_DRI --sound
 	filter_collection 204_DRI_MonaghanCC --video
@@ -84,6 +81,25 @@ EOF
 	#filter_collection 9200519_Ag_BnF_Gallica_typedoc_manuscrits --text
 	#filter_collection 92065_Ag_EU_TEL_a0445_ETravel --media --text --open
 
+	#added 2020-07-22
+	while read C; do filter_collection "$C" --open --media --fulltext; done <<EOF 
+205_FBC_WielkopolskaBibliotekaCyfrowa_Part1
+222_Slovenia_Newspapers_Part1
+9200394_Slovenia_Laibacher_Zeitung
+223_Slovenia_Slovenski_gospodar_Ljubljanski_zvon
+194_Slovenia_Kmetijske_in_rokodelske_novice
+15_Slovenia_Newspapers_Part3
+221_Slovenia_Newspapers_Part4
+2020128_Slovenia_Newspapers_Part2
+0943108_Ag_BG_PenchoSlaveykov_LIBVAR_ARTICLE_2014
+0943110_Ag_BG_PenchoSlaveykov_LIBVAR_ARTICLE_2015
+0943109_Ag_BG_PenchoSlaveykov_LIBVAR_ADVERT_2014
+0943111_Ag_BG_PenchoSlaveykov_LIBVAR_ADVERT_2015
+92068_Slovenia_Europeana_travel
+2020127_Slovenia_Books
+EOF
+
+	#added earlier
 	while read C; do filter_collection "$C" --open --media --fulltext; done <<EOF 
 0940431_Ag_PL_rcin.org.pl
 0940433_Ag_PL_mbc.malopolska.pl
@@ -96,6 +112,17 @@ EOF
 9200498_Ag_BnF_occitanica
 EOF
 #  filter_collection "0940442_Ag_PL_bibliotekacyfrowa.eu" --open --media --fulltext
+
+
+	while read C; do filter_collection "$C" --open --media --text; done <<EOF 
+0940423_FBC_WielkopolskaBibliotekaCyfrowa_Part2
+EOF
+
+#confirmed acceptable conditions
+        while read C; do filter_collection "$C" --media --text; done <<EOF
+129_RoL_OVI_manoscritti
+EOF
+
 }
 
 filter_collection() {
