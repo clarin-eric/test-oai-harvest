@@ -122,6 +122,7 @@
 <!-- added 2020-07-22 -->
 
 
+<!-- 
 <set>2020127</set>
 <set>0943111</set>
 <set>0943109</set>
@@ -135,15 +136,19 @@
 <set>9200394</set>
 <set>222</set>
 <set>205</set>
+ -->
 
 <!-- empty selection? 2020-08-03 -->
+<!-- 
 <set>0940423</set>
 <set>129</set>
 <set>204</set>
 <set>217</set>
+ -->
 
 
 <!-- added 2020Q1 -->
+<!-- 
 <set>100</set>
 <set>101</set>
 <set>102</set>
@@ -171,10 +176,12 @@
 <set>97</set>
 <set>0940429</set>
 <set>0940442</set>
+ -->
 
 
 <!-- harvested before 2020-01 -->
 
+<!-- 
 <set>9200114</set>
 <set>92068</set>
 <set>2022411</set>
@@ -191,6 +198,7 @@
 <set>9200467</set>
 <set>9200470</set>
 <set>9200498</set>
+ -->
 
   </provider>
 
