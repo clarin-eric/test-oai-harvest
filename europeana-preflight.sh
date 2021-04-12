@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-SCRIPT_DIR="/home/twagoo/test-harvest/europeana-oai-pmh"
+SCRIPT_DIR="${HOME}/test-harvest/europeana-oai-pmh"
 FILTER_HARVEST="${SCRIPT_DIR}/filter-harvest.sh"
 OUT_DIR_BASE="${SCRIPT_DIR}/out" #is fixed in script, not configurable here
 
