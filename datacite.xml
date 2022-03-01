@@ -43,6 +43,7 @@
     <dir path="oai-raw" id="raw" max-files="0"/>
     <dir path="oai-rec" id="rec" max-files="0"/>
     <dir path="oai-pmh" id="oai" max-files="0"/>
+    <dir path="results/datacite" id="datacite" max-files="0"/>
     <dir path="results/cmdi-1_1" id="cmdi-1_1" max-files="0"/>
     <dir path="results/cmdi" id="cmdi-1_2" max-files="0"/>
   </directories>
@@ -75,32 +76,28 @@
 -->
 
   <actions>
-    <format match="namespace" value="http://www.clarin.eu/cmd/1">
+
+    <format match="namespace" value="http://schema.datacite.org/oai/oai-1.1/">
       <action type="save" dir="oai" suffix=".xml"/>
       <action type="split"/>
       <action type="save" dir="rec" suffix=".xml"/>
       <action type="strip"/>
+      <action type="save" dir="datacite" suffix=".xml"/>
+<!--       <action type="transform" file="file:/Users/twagoo/git/metadata-conversion/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/> -->
+      <action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/datacite-cmdi/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/>
       <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
-    <format match="namespace" value="http://www.clarin.eu/cmd/">
+    <format match="prefix" value="datacite">
       <action type="save" dir="oai" suffix=".xml"/>
       <action type="split"/>
       <action type="save" dir="rec" suffix=".xml"/>
       <action type="strip"/>
-      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
-      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="datacite" suffix=".xml"/>
+<!--       <action type="transform" file="file:/Users/twagoo/git/metadata-conversion/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/> -->
+      <action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/datacite-cmdi/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/>
       <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
-    <format match="prefix" value="olac">
-      <action type="save" dir="oai" suffix=".xml"/>
-      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
-      <action type="split"/>
-      <action type="save" dir="rec" suffix=".xml"/>
-      <action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
-      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
-      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
-      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
-    </format>
+<!-- 
     <format match="prefix" value="oai_dc">
       <action type="save" dir="oai" suffix=".xml"/>
       <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
@@ -111,24 +108,7 @@
       <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
       <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
-   <format match="prefix" value="edm">
-<!--
-	<action type="save" dir="raw" suffix=".xml"/>
--->
-	<action type="transform" file="resources/assets/filter.xsl" cache="cache"/>
-<!--
-	<action type="save" dir="oai" suffix=".xml"/>
--->
-	<action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
-	<action type="split"/>
-	<action type="strip"/>
-<!--
-        <action type="save" dir="rec" suffix=".xml"/>
--->
-	<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/dev-edm-cmdi/edm-cmdi/edm2cmdi.xsl"/>
-	<!--<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/master/edm-cmdi/edm2cmdi.xsl"/>-->
-	<action type="save" dir="cmdi-1_2" suffix=".xml"/>
-    </format>
+ -->
   </actions>
 
   <!-- ### list of providers ### -->
@@ -148,7 +128,12 @@
     </provider>
 -->
   <provider url="https://oai.datacite.org/oai" name="DataCite">
-    <set>DELFT.UU~cT0qLiomZnE9c3ViamVjdDooNi4yIE9SIDYuNSk=</set>
+	  <!-- Filtered UU records (encoded query)-->
+    <set>DELFT.UU~c3ViamVjdHMuc3ViamVjdDooKjYuMiogT1IgKjYuNSop</set>
+    <!-- CELR -->
+    <set>estdoi.keel</set>
+    <!-- AFP (todo: add filter??)-->
+    <set>gesis.adp</set>
   </provider>
 
 

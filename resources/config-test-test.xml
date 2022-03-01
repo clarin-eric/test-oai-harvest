@@ -31,7 +31,7 @@
     is not fulfilled, this setting has no effect.-->
     <incremental>false</incremental>
     
-    <scenario>ListIdentifiers</scenario>
+    <scenario>ListRecords</scenario>
   </settings>
 
 
@@ -40,34 +40,75 @@
     <!-- When the attribute 'max-files' is non-zero, subdirectories
          will be created to ensure no directory has more than that
          number of files. -->
-    <dir path="oai-raw" id="raw" max-files="10000"/>
-    <dir path="oai-rec" id="rec" max-files="50000"/>
-    <dir path="oai-pmh" id="oai" max-files="10000"/>
-    <dir path="results/cmdi-1_1" id="cmdi-1_1" max-files="50000"/>
-    <dir path="results/cmdi" id="cmdi-1_2" max-files="50000"/>
+    <dir path="oai-raw" id="raw" max-files="0"/>
+    <dir path="oai-rec" id="rec" max-files="0"/>
+    <dir path="oai-pmh" id="oai" max-files="0"/>
+    <dir path="results/datacite" id="datacite" max-files="0"/>
+    <dir path="results/cmdi-1_1" id="cmdi-1_1" max-files="0"/>
+    <dir path="results/cmdi" id="cmdi-1_2" max-files="0"/>
   </directories>
 
 
   <!-- ### actions to take on metadata formats (in order of preference) ### -->
+<!--
   <actions>
-  <format match="namespace" value="http://www.europeana.eu/schemas/edm/">
-<!--
--->
-	<action type="save" dir="raw" suffix=".xml"/>
-<!--
--->
-	<action type="transform" file="resources/assets/filter.xsl" cache="cache"/>
-	<action type="save" dir="oai" suffix=".xml"/>
-	<action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
-	<action type="split"/>
-	<action type="strip"/>
-<!--
-        <action type="save" dir="rec" suffix=".xml"/>
--->
-	<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/dev-edm-cmdi/edm-cmdi/edm2cmdi.xsl"/>
-	<!--<action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/master/edm-cmdi/edm2cmdi.xsl"/>-->
-	<action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    <format match="prefix" value="olac">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="transform" file="https://raw.githubusercontent.com/menzowindhouwer/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
+      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
+      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
     </format>
+    <format match="prefix" value="oai_dc">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="transform" file="https://raw.githubusercontent.com/menzowindhouwer/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
+      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
+      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+  </actions>
+-->
+
+  <actions>
+
+    <format match="namespace" value="http://schema.datacite.org/oai/oai-1.1/">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="strip"/>
+      <action type="save" dir="datacite" suffix=".xml"/>
+<!--       <action type="transform" file="file:/Users/twagoo/git/metadata-conversion/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/> -->
+      <action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/datacite-cmdi/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+    <format match="prefix" value="datacite">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="strip"/>
+      <action type="save" dir="datacite" suffix=".xml"/>
+<!--       <action type="transform" file="file:/Users/twagoo/git/metadata-conversion/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/> -->
+      <action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/datacite-cmdi/datacite-cmdi/datacite_to_cmdi.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+<!-- 
+    <format match="prefix" value="oai_dc">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="transform" file="https://raw.githubusercontent.com/clarin-eric/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
+      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
+      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+ -->
   </actions>
 
   <!-- ### list of providers ### -->
@@ -86,92 +127,15 @@
       <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
     </provider>
 -->
-<!--
-   <provider url="https://oai.cedifor.de/" name="CEDIFOR"/>
--->  
-
-<!--   <provider url="http://oai.europeana.eu/oaicat/OAIHandler" name="Europeana">-->
-   <provider url="http://oai-pmh.europeana.eu/oai" name="Europeana" timeout="6000" max-retry-count="6">
-        <recordsList>/app/oai/resources/assets/selection.xml</recordsList>
-<!--
-             #filter_collection 92004_NL_Manuscriptorium_CZ
-        #filter_collection 9200519_Ag_BnF_Gallica_typedoc_manuscrits 
-        #filter_collection 92065_Ag_EU_TEL_a0445_ETravel 
--->
-
-
-<!-- added experimentally 2020-07-22 -->
-
-
-<set>205</set>
-<set>222</set>
-<set>9200394</set>
-<set>0940423</set>
-<set>223</set>
-<set>194</set>
-<set>15</set>
-<set>221</set>
-<set>2020128</set>
-<set>0943108</set>
-<set>0943110</set>
-<set>0943109</set>
-<set>0943111</set>
-<set>2020127</set>
-<set>217</set>
-<set>129</set>
-<set>204</set>
-
-
-<!-- added 2020Q1 -->
-<set>100</set>
-<set>101</set>
-<set>102</set>
-<set>103</set>
-<set>104</set>
-<set>106</set>
-<set>113</set>
-<set>150</set>
-<set>2021624</set>
-<set>28</set>
-<set>29</set>
-<set>32</set>
-<set>33</set>
-<set>34</set>
-<set>35</set>
-<set>36</set>
-<set>37</set>
-<set>39</set>
-<set>50</set>
-<set>54</set>
-<set>60</set>
-<set>6</set>
-<set>92</set>
-<set>94</set>
-<set>97</set>
-<set>0940429</set>
-<set>0940442</set>
-
-
-<!-- harvested before 2020-01 -->
-
-<set>9200114</set>
-<set>92068</set>
-<set>2022411</set>
-<set>2022402</set>
-<set>92078</set>
-
-<set>0940431</set>
-<set>0940433</set>
-<set>15416</set>
-<set>2022410</set>
-<set>9200452</set>
-<set>9200453</set>
-<set>9200456</set>
-<set>9200467</set>
-<set>9200470</set>
-<set>9200498</set>
-
+  <provider url="https://oai.datacite.org/oai" name="DataCite">
+	  <!-- Filtered UU records (encoded query)-->
+    <set>DELFT.UU~c3ViamVjdHMuc3ViamVjdDooKjYuMiogT1IgKjYuNSop</set>
+    <!-- CELR -->
+    <set>estdoi.keel</set>
+    <!-- AFP (todo: add filter??)-->
+    <set>gesis.adp</set>
   </provider>
+
 
   </providers>
 </config>
