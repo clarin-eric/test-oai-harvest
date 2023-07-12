@@ -1,4 +1,3 @@
-<!-- This is the configuration for harvesting all non-CLARIN providers. -->
 <config>
 
   <!-- ### configuration settings ### -->
@@ -30,8 +29,8 @@
     in question must have been harvested previously. If any of these conditions
     is not fulfilled, this setting has no effect.-->
     <incremental>false</incremental>
-    
-    <scenario>ListRecords</scenario>
+
+    <scenario>ListIdentifiers</scenario>
   </settings>
 
 
@@ -49,6 +48,31 @@
 
 
   <!-- ### actions to take on metadata formats (in order of preference) ### -->
+<!--
+  <actions>
+    <format match="prefix" value="olac">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="transform" file="https://raw.githubusercontent.com/menzowindhouwer/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
+      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
+      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+    <format match="prefix" value="oai_dc">
+      <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
+      <action type="split"/>
+      <action type="save" dir="rec" suffix=".xml"/>
+      <action type="transform" file="https://raw.githubusercontent.com/menzowindhouwer/metadata-conversion/olac-cmdi/olac-cmdi/olac2cmdi.xsl"/>
+      <action type="save" dir="cmdi-1_1" suffix=".xml"/>
+      <action type="transform" file="https://infra.clarin.eu/CMDI/1.x/upgrade/cmd-record-1_1-to-1_2.xsl" cache="cache"/>
+      <action type="save" dir="cmdi-1_2" suffix=".xml"/>
+    </format>
+  </actions>
+-->
+
   <actions>
     <format match="namespace" value="http://www.clarin.eu/cmd/1">
       <action type="save" dir="oai" suffix=".xml"/>
@@ -108,7 +132,22 @@
 
   <!-- ### list of providers ### -->
   <providers>
-	  <provider url="https://europeana-oai.clarin.eu/provider?verb=Identify" name="Europeana - CLARIN" />
+    <!--
+	Example with set specification:
+      -->
+      <!--
+    <provider url="http://www.dummy.example.only/" name="TEST">
+      <set>abc</set>
+      <set>xyz</set>
+    </provider>
+      -->
+<!--
+  <provider url="http://13.42.17.77/" name="ELAR Preservica"/>
+  <provider url="http://35.177.210.130/" name="ELAR Preservica"/>
+  <provider url="http://3.8.203.232/" name="ELAR Preservica"/>
+<provider url="https://oai@elararchive.org:Zdmr0RCHp4@elar.preservica.com/OAI-PMH/" name="ELAR Preservica"/>
+-->
+  <provider url="https://elar.bbaw.de/oai-pmh/" name="ELAR Preservica"/>
+
   </providers>
 </config>
-
