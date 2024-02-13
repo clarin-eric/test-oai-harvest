@@ -115,7 +115,7 @@
 <!--
 	<action type="save" dir="raw" suffix=".xml"/>
 -->
-	<action type="transform" file="resources/assets/filter.xsl" cache="cache"/>
+	<action type="transform" file="resources/assets/europeana-filter.xsl" cache="cache"/>
 <!--
 	<action type="save" dir="oai" suffix=".xml"/>
 -->
