@@ -146,9 +146,10 @@
    <provider url="https://b2share.eudat.eu/api/oai2d" name="B2SHARE">
       <set>0afede87-2bf2-4d89-867e-d2ee57251c62</set>
     </provider>
--->
    <provider url="https://repo.sadilar.org/oai/request" name="SADiLaR"/>
+-->
 
+   <provider url="https://test-x.sadilar.org/oai/request" name="SADiLaR"/>
 
   </providers>
 </config>
