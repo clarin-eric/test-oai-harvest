@@ -43,6 +43,7 @@
     <dir path="oai-raw" id="raw" max-files="0"/>
     <dir path="oai-rec" id="rec" max-files="0"/>
     <dir path="oai-pmh" id="oai" max-files="0"/>
+    <dir path="oai-filtered" id="oai_filtered" max-files="0"/>
     <dir path="results/cmdi-1_1" id="cmdi-1_1" max-files="0"/>
     <dir path="results/cmdi" id="cmdi-1_2" max-files="0"/>
   </directories>
@@ -103,6 +104,8 @@
     </format>
     <format match="prefix" value="oai_dc">
       <action type="save" dir="oai" suffix=".xml"/>
+      <action type="transform" file="resources/assets/filter_id.xsl" cache="cache"/>
+      <action type="save" dir="oai_filtered" suffix=".xml"/>
       <action type="transform" file="resources/addOAISetName.xsl" cache="cache"/>
       <action type="split"/>
       <action type="save" dir="rec" suffix=".xml"/>
